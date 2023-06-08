@@ -7,40 +7,6 @@ Esse endpoint é responsável por retornar a listagem de todos os games cadastra
 Nenhum.
 #### Respostas
 ##### Ok! 200
-Caso essa resposta aconteça você vai receber o token JWT para conseguir acessar endpoints protegidos na API.
-
-Exemplo de resposta:
-```
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ1c2VyM0BleGFtcGxlLmNvbSIsImlhdCI6MTY4NjI2NjkxMywiZXhwIjoxNjg2MjY4NzEzfQ.kzQHtOD1PEcLS04f0F0TZgkb2HLFV0adtM5WbMtUZWM"
-}
-```
-##### Falha na autenticação! 401
-Caso essa resposta aconteça, isso significa que aconteceu alguma falha durante o preocesso de autenticação da requisição.
-Motivos: Token inválido, Token expirado.
-Exemplo de resposta:
-```
-{
-    "err": "Token inválido"
-}
-```
-
-## Endpoint
-### POST /auth
-Esse endpoint é responsável por fazer o processo de login.
-#### Parametros
-email: E-mail do usuário cadastrado no sistema.
-password: Senha do usuário cadastrado no sistema, com aquele determinado e-mail.
-
-Exemplo:
-```
-{
-    "email": "user3@example.com",
-    "password": "pass3"
-}
-```
-#### Respostas
-##### Ok! 200
 Caso essa resposta aconteça você vai receber a listagem de todos os games.
 
 Exemplo de resposta:
@@ -71,6 +37,40 @@ Exemplo de resposta:
         "price": 19.99
     }
 ]
+```
+##### Falha na autenticação! 401
+Caso essa resposta aconteça, isso significa que aconteceu alguma falha durante o preocesso de autenticação da requisição.
+Motivos: Token inválido, Token expirado.
+Exemplo de resposta:
+```
+{
+    "err": "Token inválido"
+}
+```
+
+## Endpoint
+### POST /auth
+Esse endpoint é responsável por fazer o processo de login.
+#### Parametros
+email: E-mail do usuário cadastrado no sistema.
+password: Senha do usuário cadastrado no sistema, com aquele determinado e-mail.
+
+Exemplo:
+```
+{
+    "email": "user3@example.com",
+    "password": "pass3"
+}
+```
+#### Respostas
+##### Ok! 200
+Caso essa resposta aconteça você vai receber o token JWT para conseguir acessar endpoints protegidos na API.
+
+Exemplo de resposta:
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ1c2VyM0BleGFtcGxlLmNvbSIsImlhdCI6MTY4NjI2NjkxMywiZXhwIjoxNjg2MjY4NzEzfQ.kzQHtOD1PEcLS04f0F0TZgkb2HLFV0adtM5WbMtUZWM"
+}
 ```
 ##### Falha na autenticação! 401
 Caso essa resposta aconteça, isso significa que aconteceu alguma falha durante o preocesso de autenticação da requisição.
