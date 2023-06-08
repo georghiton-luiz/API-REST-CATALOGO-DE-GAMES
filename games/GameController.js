@@ -1,21 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const Game = require('./Games');
+const auth = require('../middlewares/auth');
 
-router.get('/games', (req, res) => {
+router.get('/games', auth, (req, res) => {
 
     Game.findAll({
         order:[
             ['id']
         ]
     }).then(games => {
-        res.status(200).json(games)        
+        res.status(200)
+        res.json({user: req.loggedUser, games: games})        
     }).catch((erro) => {
         res.status(400)
     })    
 })
 
-router.get('/games/:id', (req, res) => {
+router.get('/games/:id', auth, (req, res) => {
     let id = req.params.id;
     if (!isNaN(id)) { 
         Game.findByPk(id).then(game => {
@@ -30,7 +32,7 @@ router.get('/games/:id', (req, res) => {
     }
 })
 
-router.post('/game', (req, res) => {
+router.post('/game', auth, (req, res) => {
     let {title, year, price} = req.body;
     if(title != undefined && year != undefined && price != undefined){
         Game.create({
@@ -47,7 +49,7 @@ router.post('/game', (req, res) => {
     }
 })
 
-router.delete('/game/:id', (req, res) => {
+router.delete('/game/:id', auth, (req, res) => {
     let id = req.params.id
     if (id != undefined) {
         if(!isNaN(id)){
@@ -66,7 +68,7 @@ router.delete('/game/:id', (req, res) => {
     }
 })
 
-router.put('/game/:id', (req, res) => {
+router.put('/game/:id', auth, (req, res) => {
     let {title, year, price} = req.body;
     let id = req.params.id
     if (id != undefined) {
