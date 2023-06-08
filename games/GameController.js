@@ -6,7 +6,7 @@ router.get('/games', (req, res) => {
 
     Game.findAll({
         order:[
-            ['id', 'DESC']
+            ['id']
         ]
     }).then(games => {
         res.status(200).json(games)        

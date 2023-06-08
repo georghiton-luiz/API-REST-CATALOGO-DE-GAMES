@@ -4,7 +4,10 @@ const Game = require('./games/Games')
 const gamesController = require('./games/GameController')
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const port = 8181;
+
+app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

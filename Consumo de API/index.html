@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Games</title>
+</head>
+<body>
+    <hr>
+    <h3>Lista de Games</h3>
+    <ul id="games"></ul>
+    <hr>
+    <input type="text" name="title" id="title" placeholder="Título">
+    <br>
+    <input type="number" name="year" id="year" placeholder="Ano">
+    <br>
+    <input type="number" name="price" id="price" placeholder="Preço">
+    <br>
+    <button id="btn-add" onclick="creatGame()">Adicionar Game</button>
+    <hr>
+    <h3>Editar Games</h3>
+    <ul id="games"></ul>
+    <hr>
+    <input type="number" name="id-edit" id="id-edit" placeholder="Id" disabled>
+    <br>
+    <input type="text" name="title-edit" id="title-edit" placeholder="Título" disabled>
+    <br>
+    <input type="number" name="year-edit" id="year-edit" placeholder="Ano" disabled>
+    <br>
+    <input type="number" name="price-edit" id="price-edit" placeholder="Preço" disabled>
+    <br>
+    <button id="btn-edit" onclick="gameEdit()" disabled>Editar Game</button>
+    <button id="btn-edit-cancel" onclick="cancelEdit()" disabled>Cancelar</button>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="./script.js"></script>
+</html>
