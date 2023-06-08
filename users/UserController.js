@@ -2,8 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('./User');
-
-const JWTSecret = 'lkerjeçlwqerlkjljçweqrjlqwerjlwqçrqwçerqweçwlrj'
+const { auth, JWTSecret } = require('../middlewares/auth')
 
 router.post('/auth', (req, res) => {
     let {email, password} = req.body;

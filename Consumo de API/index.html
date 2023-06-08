@@ -7,9 +7,17 @@
     <title>Loja de Games</title>
 </head>
 <body>
+    <h2>Login</h2>
+    <input type="text" name="email" id="email" placeholder="emial@email.com">
+    <br>
+    <input type="text" name="password" id="password" placeholder="Password">
+    <br>
+    <button onclick="login()" id="login">Login</button>
     <hr>
     <h3>Lista de Games</h3>
     <ul id="games"></ul>
+    <hr>
+    <h3>Novo Games</h3>
     <hr>
     <input type="text" name="title" id="title" placeholder="Título">
     <br>
@@ -20,7 +28,6 @@
     <button id="btn-add" onclick="creatGame()">Adicionar Game</button>
     <hr>
     <h3>Editar Games</h3>
-    <ul id="games"></ul>
     <hr>
     <input type="number" name="id-edit" id="id-edit" placeholder="Id" disabled>
     <br>

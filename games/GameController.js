@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Game = require('./Games');
-const auth = require('../middlewares/auth');
+const { auth, JWTSecret } = require('../middlewares/auth');
 
 router.get('/games', auth, (req, res) => {
 
@@ -11,7 +11,7 @@ router.get('/games', auth, (req, res) => {
         ]
     }).then(games => {
         res.status(200)
-        res.json({user: req.loggedUser, games: games})        
+        res.json(games)        
     }).catch((erro) => {
         res.status(400)
     })    

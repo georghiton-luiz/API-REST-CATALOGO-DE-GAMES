@@ -8,8 +8,16 @@ const yearInputEdit = document.querySelector('#year-edit');
 const princeInputEdit = document.querySelector('#price-edit');
 const btnEdit = document.querySelector('#btn-edit');
 const btnEditCancel = document.querySelector('#btn-edit-cancel');
+const emialInput = document.querySelector('#email');
+const passwordInput = document.querySelector('#password');
 
-axios.get('http://localhost:8181/games').then((response) => {
+let axiosConfig = {
+   headers: {
+      Authorization: `Beaser ${localStorage.getItem('token')}`
+   }
+}
+
+axios.get('http://localhost:8181/games', axiosConfig).then((response) => {
    let games = response.data;
    games.forEach((game) => {    
       let item = document.createElement('li');
@@ -18,7 +26,7 @@ axios.get('http://localhost:8181/games').then((response) => {
 
       btnDelete.innerText = 'Delete'
       btnUpdate.innerText = 'Editar'
-      item.innerHTML = `${game.id} - ${game.title} - R$ ${game.price}`;
+      item.innerHTML = `${game.id} - ${game.title} - ${game.year} - R$ ${game.price}`;
 
       list.appendChild(item);
       item.appendChild(btnDelete);
@@ -61,7 +69,7 @@ const creatGame = () => {
       year: yearInput.value,
       price: princeInput.value
    }
-   axios.post('http://localhost:8181/game', game).then((response) => {
+   axios.post('http://localhost:8181/game', game, axiosConfig).then((response) => {
       if (response.status == 200) {
          alert('Game adicionado"')
       }
@@ -82,7 +90,7 @@ const gameEdit = () => {
       year: yearInputEdit.value,
       price: princeInputEdit.value
    }
-   axios.put(`http://localhost:8181/game/${idInputedit.value}`, gameUpdate).then((response) => {
+   axios.put(`http://localhost:8181/game/${idInputedit.value}`, gameUpdate, axiosConfig).then((response) => {
       if (response.status == 200) {
          alert('Game atualizado!')
          location.reload();
@@ -91,5 +99,22 @@ const gameEdit = () => {
       }
    }).catch((erro) => {
       alert('Erro intero do servidor')
+   })
+}
+
+const login = () => {
+   let email = emialInput.value;
+   let password = passwordInput.value
+
+   axios.post('http://localhost:8181/auth',{
+      email,
+      password
+   }).then((res) => {
+      localStorage.setItem('token', `${res.data.token}`);
+      axiosConfig.headers.Authorization = `Beaser ${localStorage.getItem('token')}`
+      alert(`Logado`);
+      location.reload();
+   }).catch((err) => {
+      alert('E-mail ou senha incorreto');
    })
 }
